@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Collections.Generic;
 using Oqtane.Modules;
@@ -73,4 +73,3 @@ namespace Playbook.Module.GovernedExample.Repository
         }
     }
 }
-

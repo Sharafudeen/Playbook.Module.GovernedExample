@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using Oqtane.Services;
 using Playbook.Module.GovernedExample.Services;
@@ -16,4 +16,3 @@ namespace Playbook.Module.GovernedExample.Startup
         }
     }
 }
-

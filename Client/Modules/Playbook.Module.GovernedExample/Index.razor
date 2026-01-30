@@ -1,4 +1,4 @@
-﻿@using Playbook.Module.GovernedExample.Services
+@using Playbook.Module.GovernedExample.Services
 @using Playbook.Module.GovernedExample.Models
 
 @namespace Playbook.Module.GovernedExample
@@ -18,30 +18,19 @@ else
     <br />
     @if (@_GovernedExamples.Count != 0)
     {
-        <ActionLink Action="Add" Security="SecurityAccessLevel.Edit" Text="Add GovernedExample" ResourceKey="Add" />
-        <br />
-        <br />
-        @if (@_GovernedExamples.Count != 0)
-        {
-            <Pager Items="@_GovernedExamples">
-                <Header>
+        <Pager Items="@_GovernedExamples">
+            <Header>
                 <th style="width: 1px;">&nbsp;</th>
                 <th style="width: 1px;">&nbsp;</th>
                 <th>@Localizer["Name"]</th>
-                </Header>
-                <Row>
-                    <td><ActionLink Action="Edit" Parameters="@($"id=" + context.GovernedExampleId.ToString())" ResourceKey="Edit" /></td>
-                    <td><ActionDialog Header="Delete GovernedExample" Message="Are You Sure You Wish To Delete This GovernedExample?" Action="Delete" Security="SecurityAccessLevel.Edit" Class="btn btn-danger" OnClick="@(async () => await Delete(context))" ResourceKey="Delete" Id="@context.GovernedExampleId.ToString()" /></td>
-                    <td>@context.Name</td>
-                </Row>
-            </Pager>
-        }
-        else
-        {
-            <p>@Localizer["Message.DisplayNone"]</p>
-        }
+            </Header>
+            <Row>
+                <td><ActionLink Action="Edit" Parameters="@($"id=" + context.GovernedExampleId.ToString())" ResourceKey="Edit"  /></td>
+                <td><ActionDialog Header="Delete GovernedExample" Message="Are You Sure You Wish To Delete This GovernedExample?" Action="Delete" Security="SecurityAccessLevel.Edit" Class="btn btn-danger" OnClick="@(async () => await Delete(context))" ResourceKey="Delete"  Id="@context.GovernedExampleId.ToString()" /></td>
+                <td>@context.Name</td>
+            </Row>
+        </Pager>
     }
-
     else
     {
         <p>@Localizer["Message.DisplayNone"]</p>

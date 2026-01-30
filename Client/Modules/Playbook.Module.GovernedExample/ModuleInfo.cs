@@ -1,4 +1,4 @@
-﻿using Oqtane.Models;
+using Oqtane.Models;
 using Oqtane.Modules;
 
 namespace Playbook.Module.GovernedExample
@@ -8,7 +8,7 @@ namespace Playbook.Module.GovernedExample
         public ModuleDefinition ModuleDefinition => new ModuleDefinition
         {
             Name = "GovernedExample",
-            Description = "Playbook GovernedExample",
+            Description = "Playbook.Module.GovernedExample",
             Version = "1.0.0",
             ServerManagerType = "Playbook.Module.GovernedExample.Manager.GovernedExampleManager, Playbook.Module.GovernedExample.Server.Oqtane",
             ReleaseVersions = "1.0.0",
@@ -17,4 +17,3 @@ namespace Playbook.Module.GovernedExample
         };
     }
 }
-

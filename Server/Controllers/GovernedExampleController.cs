@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
@@ -112,4 +112,3 @@ namespace Playbook.Module.GovernedExample.Controllers
         }
     }
 }
-

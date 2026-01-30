@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Oqtane.Models;
 
@@ -13,4 +13,3 @@ namespace Playbook.Module.GovernedExample.Models
         public string Name { get; set; }
     }
 }
-

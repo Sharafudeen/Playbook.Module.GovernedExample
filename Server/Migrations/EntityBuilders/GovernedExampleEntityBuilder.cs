@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Migrations.Operations;
 using Microsoft.EntityFrameworkCore.Migrations.Operations.Builders;
 using Oqtane.Databases.Interfaces;
@@ -34,4 +34,3 @@ namespace Playbook.Module.GovernedExample.Migrations.EntityBuilders
         public OperationBuilder<AddColumnOperation> Name { get; set; }
     }
 }
-

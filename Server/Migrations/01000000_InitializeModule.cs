@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Oqtane.Databases.Interfaces;
 using Oqtane.Migrations;
@@ -28,4 +28,3 @@ namespace Playbook.Module.GovernedExample.Migrations
         }
     }
 }
-

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>    
@@ -6,7 +6,7 @@
     <Product>Playbook.Module.GovernedExample</Product>
     <Authors>Playbook</Authors>
     <Company>Playbook</Company>
-    <Description>Playbook GovernedExample</Description>
+    <Description>Playbook.Module.GovernedExample</Description>
     <Copyright>Playbook</Copyright>
     <AssemblyName>Playbook.Module.GovernedExample.Shared.Oqtane</AssemblyName>
   </PropertyGroup>
@@ -15,9 +15,10 @@
     <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="Oqtane.Shared"><HintPath>..\..\oqtane.framework\Oqtane.Server\bin\Debug\net10.0\Oqtane.Shared.dll</HintPath></Reference>
-  </ItemGroup>
+	<ItemGroup>
+		<Reference Include="Oqtane.Shared">
+			<HintPath>..\..\oqtane.framework\Oqtane.Server\bin\Debug\net10.0\Oqtane.Shared.dll</HintPath>
+		</Reference>
+	</ItemGroup>
 
 </Project>
-
