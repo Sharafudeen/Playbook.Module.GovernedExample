@@ -62,4 +62,3 @@
   <Project Path="Server/Playbook.Module.GovernedExample.Server.csproj" />
   <Project Path="Shared/Playbook.Module.GovernedExample.Shared.csproj" />
 </Solution>
-
