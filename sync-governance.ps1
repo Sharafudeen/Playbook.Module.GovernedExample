@@ -42,7 +42,18 @@ Write-Verbose "Starting governance sync"
 # ------------------------------------------------------------
 
 $Root = Get-Location
-$PlaybookRoot = Resolve-Path "$Root\..\oqtane-ai-playbook\module-playbook-example"
+# HARDCODE the absolute path since your playbook is in a different location
+$PlaybookRoot = "D:\Oqtane Development\oqtane-ai-playbook\module-playbook-example"
+
+Write-Verbose "Root: $Root"
+Write-Verbose "PlaybookRoot: $PlaybookRoot"
+
+# Verify the playbook root exists
+if (-not (Test-Path $PlaybookRoot)) {
+    Write-Error "Playbook directory not found: $PlaybookRoot"
+    Write-Host "Expected path: D:\Oqtane Development\oqtane-ai-playbook\module-playbook-example" -ForegroundColor Yellow
+    throw "Playbook directory missing. Check that the playbook exists at the expected location."
+}
 
 $slnx = Get-ChildItem -Path $Root -Filter *.slnx | Select-Object -First 1
 if (-not $slnx) {
@@ -135,7 +146,8 @@ function Ensure-PhysicalFile {
 # ------------------------------------------------------------
 
 $MaterialisedFiles = @(
-    "docs/deviations.md"
+    "docs/deviations.md",
+	"docs/ai-decision-timeline.md" 
 )
 
 foreach ($file in $MaterialisedFiles) {
@@ -146,19 +158,21 @@ foreach ($file in $MaterialisedFiles) {
 # Governance folders + files
 # ------------------------------------------------------------
 
-$GovernanceFolders = @{
-    "/docs/governance/" = @(
-        "docs/governance/027-rules-index.md",
-        "docs/governance/027x-structure-and-boundaries.md",
-        "docs/governance/027x-repositories.md",
-        "docs/governance/027x-packaging-and-dependencies.md"
-    )
+# Find ALL files in the playbook's governance folder
+$GovernanceSourcePath = Join-Path $PlaybookRoot "docs\governance"
+$GovernanceFiles = if (Test-Path $GovernanceSourcePath) {
+    Get-ChildItem -Path $GovernanceSourcePath -File -Filter "*.md" | 
+    ForEach-Object { "docs/governance/$($_.Name)" }
+} else {
+    Write-Warning "Governance source folder not found: $GovernanceSourcePath"
+    @()
 }
 
-foreach ($folder in $GovernanceFolders.Keys) {
-    $folderNode = Get-OrCreateFolderNode -Name $folder
-
-    foreach ($file in $GovernanceFolders[$folder]) {
+# Create the governance folder and add references to all files
+if ($GovernanceFiles.Count -gt 0) {
+    $folderNode = Get-OrCreateFolderNode -Name "/docs/governance/"
+    
+    foreach ($file in $GovernanceFiles) {
         $refPath = "../oqtane-ai-playbook/module-playbook-example/$file"
         Ensure-FileReference -FolderNode $folderNode -Path $refPath
     }
