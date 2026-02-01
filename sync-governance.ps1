@@ -179,6 +179,19 @@ if ($GovernanceFiles.Count -gt 0) {
 }
 
 # ------------------------------------------------------------
+# Add materialized files to solution folder
+# ------------------------------------------------------------
+
+# Create /docs/ folder for materialized files
+$docsFolderNode = Get-OrCreateFolderNode -Name "/docs/"
+
+foreach ($file in $MaterialisedFiles) {
+    # Reference the local copy (not the playbook copy)
+    $refPath = $file  # This references the local file
+    Ensure-FileReference -FolderNode $docsFolderNode -Path $refPath
+}
+
+# ------------------------------------------------------------
 # Save solution
 # ------------------------------------------------------------
 
