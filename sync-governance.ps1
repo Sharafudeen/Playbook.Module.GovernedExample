@@ -38,21 +38,30 @@ $Changes = @()
 Write-Verbose "Starting governance sync"
 
 # ------------------------------------------------------------
-# Paths
+# Paths - HARDCODED FOR THIS SPECIFIC INSTALLATION
 # ------------------------------------------------------------
 
 $Root = Get-Location
-# HARDCODE the absolute path since your playbook is in a different location
+
+# HARDCODED ABSOLUTE PATH - THIS IS FIXED FOR YOUR ENVIRONMENT
+# This path is specific to your machine and should not change
 $PlaybookRoot = "D:\Oqtane Development\oqtane-ai-playbook\module-playbook-example"
 
 Write-Verbose "Root: $Root"
-Write-Verbose "PlaybookRoot: $PlaybookRoot"
+Write-Verbose "PlaybookRoot: $PlaybookRoot (HARDCODED)"
 
 # Verify the playbook root exists
 if (-not (Test-Path $PlaybookRoot)) {
-    Write-Error "Playbook directory not found: $PlaybookRoot"
-    Write-Host "Expected path: D:\Oqtane Development\oqtane-ai-playbook\module-playbook-example" -ForegroundColor Yellow
-    throw "Playbook directory missing. Check that the playbook exists at the expected location."
+    Write-Error "Playbook directory not found at hardcoded path: $PlaybookRoot"
+    Write-Host ""
+    Write-Host "This script uses a HARDCODED path that is specific to this development environment." -ForegroundColor Yellow
+    Write-Host "The playbook must be at: $PlaybookRoot" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "To fix this:" -ForegroundColor Cyan
+    Write-Host "1. Ensure the playbook exists at the above path" -ForegroundColor White
+    Write-Host "2. OR edit this script and update the `$PlaybookRoot` variable" -ForegroundColor White
+    Write-Host ""
+    throw "Playbook directory missing at hardcoded location."
 }
 
 $slnx = Get-ChildItem -Path $Root -Filter *.slnx | Select-Object -First 1
@@ -98,6 +107,7 @@ function Ensure-FileReference {
         [string] $Path
     )
 
+    # Check if file already referenced
     if ($FolderNode.File | Where-Object { $_.Path -eq $Path }) {
         return
     }
@@ -123,72 +133,85 @@ function Ensure-PhysicalFile {
 
     if (Test-Path $target) {
         Write-Verbose "File exists: $RelativePath"
-        return
+        return $true
     }
 
     if (-not (Test-Path $source)) {
         Write-Warning "Playbook source missing: $RelativePath"
-        return
+        return $false
     }
 
     Write-Verbose "Materialising governance file: $RelativePath"
 
     if (-not $DryRun) {
-        New-Item -ItemType Directory -Path (Split-Path $target) -Force | Out-Null
+        $targetDir = Split-Path $target -Parent
+        if (-not (Test-Path $targetDir)) {
+            New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
+        }
         Copy-Item $source $target -Force
     }
 
     $script:Changes += "Create file: $RelativePath"
+    return $true
 }
 
 # ------------------------------------------------------------
-# Materialised governance files (MUST exist)
+# Materialised governance files (MUST exist in playbook)
 # ------------------------------------------------------------
 
 $MaterialisedFiles = @(
     "docs/deviations.md",
-	"docs/ai-decision-timeline.md" 
+    "docs/ai-decision-timeline.md" 
 )
 
+$MaterialisedFilesCreated = @()
+
 foreach ($file in $MaterialisedFiles) {
-    Ensure-PhysicalFile -RelativePath $file
-}
-
-# ------------------------------------------------------------
-# Governance folders + files
-# ------------------------------------------------------------
-
-# Find ALL files in the playbook's governance folder
-$GovernanceSourcePath = Join-Path $PlaybookRoot "docs\governance"
-$GovernanceFiles = if (Test-Path $GovernanceSourcePath) {
-    Get-ChildItem -Path $GovernanceSourcePath -File -Filter "*.md" | 
-    ForEach-Object { "docs/governance/$($_.Name)" }
-} else {
-    Write-Warning "Governance source folder not found: $GovernanceSourcePath"
-    @()
-}
-
-# Create the governance folder and add references to all files
-if ($GovernanceFiles.Count -gt 0) {
-    $folderNode = Get-OrCreateFolderNode -Name "/docs/governance/"
-    
-    foreach ($file in $GovernanceFiles) {
-        $refPath = "../oqtane-ai-playbook/module-playbook-example/$file"
-        Ensure-FileReference -FolderNode $folderNode -Path $refPath
+    $created = Ensure-PhysicalFile -RelativePath $file
+    if ($created) {
+        $MaterialisedFilesCreated += $file
     }
 }
 
 # ------------------------------------------------------------
-# Add materialized files to solution folder
+# Governance folders + files (ONLY IF THEY EXIST IN PLAYBOOK)
+# ------------------------------------------------------------
+
+# Find ONLY files that actually exist in the playbook's governance folder
+$GovernanceSourcePath = Join-Path $PlaybookRoot "docs\governance"
+
+if (Test-Path $GovernanceSourcePath) {
+    $GovernanceFiles = Get-ChildItem -Path $GovernanceSourcePath -File -Filter "*.md" -ErrorAction SilentlyContinue
+    
+    if ($GovernanceFiles.Count -gt 0) {
+        Write-Verbose "Found $($GovernanceFiles.Count) governance files in playbook"
+        
+        # Create the governance folder in solution
+        $folderNode = Get-OrCreateFolderNode -Name "/docs/governance/"
+        
+        foreach ($govFile in $GovernanceFiles) {
+            # HARDCODED ABSOLUTE PATH reference to the playbook file
+            $absolutePath = $govFile.FullName
+            Ensure-FileReference -FolderNode $folderNode -Path $absolutePath
+        }
+    } else {
+        Write-Verbose "No .md files found in playbook governance folder"
+    }
+} else {
+    Write-Warning "Governance folder not found in playbook: $GovernanceSourcePath"
+}
+
+# ------------------------------------------------------------
+# Add materialized files to solution folder (ONLY IF CREATED)
 # ------------------------------------------------------------
 
 # Create /docs/ folder for materialized files
 $docsFolderNode = Get-OrCreateFolderNode -Name "/docs/"
 
-foreach ($file in $MaterialisedFiles) {
-    # Reference the local copy (not the playbook copy)
-    $refPath = $file  # This references the local file
-    Ensure-FileReference -FolderNode $docsFolderNode -Path $refPath
+foreach ($file in $MaterialisedFilesCreated) {
+    # Reference the local copy (absolute path in the solution)
+    $absolutePath = Join-Path $Root $file
+    Ensure-FileReference -FolderNode $docsFolderNode -Path $absolutePath
 }
 
 # ------------------------------------------------------------
@@ -196,12 +219,12 @@ foreach ($file in $MaterialisedFiles) {
 # ------------------------------------------------------------
 
 if ($Changes.Count -eq 0) {
-    Write-Host "✔ Solution already compliant. No changes required."
+    Write-Host "Solution already compliant. No changes required."
 }
 else {
     Write-Host ""
     Write-Host "=== GOVERNANCE SYNC $(if ($DryRun) { '(DRY RUN)' }) ==="
-    $Changes | ForEach-Object { Write-Host "• $_" }
+    $Changes | ForEach-Object { Write-Host "* $_" }
 
     if (-not $DryRun) {
         $xml.Save($slnx.FullName)
@@ -210,4 +233,4 @@ else {
 }
 
 Write-Host ""
-Write-Host "✔ Governance sync completed successfully."
+Write-Host "Governance sync completed successfully."
