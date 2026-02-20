@@ -1,16 +1,17 @@
 <Solution>
-  <Folder Name="/.amazonq/" />
-  <Folder Name="/.amazonq/rules/">
-    <File Path="../oqtane-ai-playbook/module-playbook-example/.amazonq/rules/instructions.md" />
+  <Folder Name="/Solution Items/">
+    <File Path="README.md" />
   </Folder>
-  <Folder Name="/.github/">
-    <File Path="../oqtane-ai-playbook/module-playbook-example/.github/copilot-instructions.md" />
-    <File Path=".github/module-instructions.md" />
-  </Folder>
-  <Folder Name="/docs/">
-    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/README.md" />
-    <File Path="docs/ai-decision-timeline.md" />
-    <File Path="docs/deviations.md" />
+  <Folder Name="/_Oqtane/">
+    <Project Path="D:/Oqtane Development/oqtane.framework/Oqtane.Client/Oqtane.Client.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="D:/Oqtane Development/oqtane.framework/Oqtane.Server/Oqtane.Server.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
+    <Project Path="D:/Oqtane Development/oqtane.framework/Oqtane.Shared/Oqtane.Shared.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
   </Folder>
   <Folder Name="/docs/governance/">
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027-rules-index.md" />
@@ -20,15 +21,20 @@
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-canonical-framework.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-canonical-validation.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-core-ai-behavior.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-data-identity-remapping.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-error-handling.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-execution-parity.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-javascript-usage.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-localization.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-migrations.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-module-portability.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-packaging-and-dependencies.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-repositories.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-scheduled-jobs.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-startup.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-structure-and-boundaries.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-construction.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-css-and-styling.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-mudblazor.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-Radzen.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-validation.md" />
@@ -43,22 +49,20 @@
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/UI Construction Prompt.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/ui.md" />
   </Folder>
-  <Folder Name="/Solution Items/">
-    <File Path="README.md" />
+  <Folder Name="/.amazonq/" />
+  <Folder Name="/.amazonq/rules/">
+    <File Path="../oqtane-ai-playbook/module-playbook-example/.amazonq/rules/instructions.md" />
   </Folder>
-  <Folder Name="/_Oqtane/">
-    <Project Path="../oqtane.framework/Oqtane.Client/Oqtane.Client.csproj">
-      <Build Solution="Debug|*" Project="false" />
-    </Project>
-    <Project Path="../oqtane.framework/Oqtane.Server/Oqtane.Server.csproj">
-      <Build Solution="Debug|*" Project="false" />
-    </Project>
-    <Project Path="../oqtane.framework/Oqtane.Shared/Oqtane.Shared.csproj">
-      <Build Solution="Debug|*" Project="false" />
-    </Project>
+  <Folder Name="/.github/">
+    <File Path=".github/module-instructions.md" />
+    <File Path=".github/copilot-instructions.md" />
   </Folder>
-  <Project Path="Client/Playbook.Module.GovernedExample.Client.csproj" />
-  <Project Path="Package/Playbook.Module.GovernedExample.Package.csproj" />
-  <Project Path="Server/Playbook.Module.GovernedExample.Server.csproj" />
-  <Project Path="Shared/Playbook.Module.GovernedExample.Shared.csproj" />
+  <Folder Name="/docs/">
+    <File Path="docs/deviations.md" />
+    <File Path="docs/ai-decision-timeline.md" />
+  </Folder>
+  <Project Path="D:/Oqtane Development/Playbook.Module.GovernedExample/Client/Playbook.Module.GovernedExample.Client.csproj" />
+  <Project Path="D:/Oqtane Development/Playbook.Module.GovernedExample/Package/Playbook.Module.GovernedExample.Package.csproj" />
+  <Project Path="D:/Oqtane Development/Playbook.Module.GovernedExample/Server/Playbook.Module.GovernedExample.Server.csproj" />
+  <Project Path="D:/Oqtane Development/Playbook.Module.GovernedExample/Shared/Playbook.Module.GovernedExample.Shared.csproj" />
 </Solution>

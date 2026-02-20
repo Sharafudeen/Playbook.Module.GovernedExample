@@ -1,20 +1,16 @@
-# Copilot Instructions
+## AI Instruction Entry Point (Amazon Q)
 
-## AI Instruction Entry Point (Copilot)
+This file defines how Amazon Q must operate in this repository.
 
-This file is the entry point for GitHub Copilot in this repository.
-
-It does not define governance rules.
+This file does not contain governance rules.
 Authoritative rules are defined in the Module Playbook documentation under /docs.
 
 Before generating or modifying code, you MUST read and apply:
 - docs/governance/027-rules-index.md
 - docs/prompts as relevant to the task
-- .github/module-instructions.md
 
-## Copilot Memories
-When copilot detects a Memory "Meory Detected" it should add it 
-to the module-instructions.md file in the /.github folder.
+Do not invent patterns or bypass documented rules.
+If a rule is unclear or missing, ask or refuse.
 
 ## Governance Declaration (Mandatory)
 
