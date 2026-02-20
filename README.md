@@ -104,6 +104,15 @@ text
 > Folder-only structures are ignored by AI tools.
 > 
 
+In the solution folder you will find a file named `Start-Solution.cmd` that will open the solution and the governance files in Visual Studio. This is to ensure that the AI can see the governance files when it is generating code.
+Make sure to open the solution using this file to ensure the AI has access to the governance context.
+
+Setting up the repository this way allows AI tools to reference the governance rules directly, enabling them to generate code that complies with the established guidelines and to refuse requests that would violate those rules.
+
+**Modify the script location at line **
+
+    ==REM  Use your REAL script location for module-playbook-example==
+
 ---
 
 ## How AI Is Used in This Repository

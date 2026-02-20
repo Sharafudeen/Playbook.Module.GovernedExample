@@ -39,7 +39,7 @@ goto parseArgs
 :argsDone
 
 REM ------------------------------------------------------------
-REM  Use your REAL script location
+REM  Use your REAL script location for module-playbook-example
 REM ------------------------------------------------------------
 set "ScriptPath=D:\Oqtane Development\oqtane-ai-playbook\module-playbook-example\sync-governance.ps1"
 
