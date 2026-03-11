@@ -3,14 +3,14 @@
     <File Path="README.md" />
   </Folder>
   <Folder Name="/_Oqtane/">
-    <Project Path="D:/Oqtane Development/oqtane.framework/Oqtane.Client/Oqtane.Client.csproj">
-      <Build Solution="Debug|*" Project="false" />
+    <Project Path="../oqtane.framework/Oqtane.Client/Oqtane.Client.csproj">
+      <Build Project="false" />
     </Project>
-    <Project Path="D:/Oqtane Development/oqtane.framework/Oqtane.Server/Oqtane.Server.csproj">
-      <Build Solution="Debug|*" Project="false" />
+    <Project Path="../oqtane.framework/Oqtane.Server/Oqtane.Server.csproj" DefaultStartup="true">
+      <Build Project="false" />
     </Project>
-    <Project Path="D:/Oqtane Development/oqtane.framework/Oqtane.Shared/Oqtane.Shared.csproj">
-      <Build Solution="Debug|*" Project="false" />
+    <Project Path="../oqtane.framework/Oqtane.Shared/Oqtane.Shared.csproj">
+      <Build Project="false" />
     </Project>
   </Folder>
   <Folder Name="/docs/governance/">
@@ -30,11 +30,15 @@
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-module-portability.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-packaging-and-dependencies.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-repositories.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-runtime-awareness.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-scheduled-jobs.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-site-tasks.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-startup.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-structure-and-boundaries.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-architecture.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-construction.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-css-and-styling.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-fluentui.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-mudblazor.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-Radzen.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/governance/027x-ui-validation.md" />
@@ -42,16 +46,18 @@
   </Folder>
   <Folder Name="/docs/prompts/">
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/Authorization.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/create-module-instructions.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/diagnositics.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/Localization Opt-In.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/README.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/services.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/UI Construction Prompt.md" />
+    <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/ui-framework-installation-template.md" />
     <File Path="../oqtane-ai-playbook/module-playbook-example/docs/prompts/ui.md" />
   </Folder>
   <Folder Name="/.amazonq/" />
   <Folder Name="/.amazonq/rules/">
-    <File Path="../oqtane-ai-playbook/module-playbook-example/.amazonq/rules/instructions.md" />
+    <File Path=".amazonq/rules/instructions.md" />
   </Folder>
   <Folder Name="/.github/">
     <File Path=".github/module-instructions.md" />
